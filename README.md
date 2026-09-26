@@ -7,7 +7,13 @@
 <p align="center">
   <b>공식 사용 설명서</b><br/>
   튜브워커 엑셀 대본 + 인물시트로 야담 씬 이미지를 한 번에 일괄 생성하기<br/><br/>
-  👉 <a href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd"><b>후파의 야담플로우 바로가기</b></a>
+</p>
+
+<p align="center">
+  <a href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd">
+    <img src="https://img.shields.io/badge/▶%20클릭하면%20후파의%20야담플로우로%20이동합니다-E8B82A?style=for-the-badge&labelColor=1F1A12" height="56" alt="클릭하면 후파의 야담플로우로 이동합니다" />
+  </a><br/>
+  <sub>👆 위 버튼을 클릭하면 후파의 야담플로우가 열립니다</sub>
 </p>
 
 ---

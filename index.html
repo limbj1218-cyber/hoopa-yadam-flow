@@ -42,9 +42,22 @@
     font-size:12.5px;font-weight:700;letter-spacing:.4px;margin-bottom:6px}
   header h1{margin:0 0 4px;font-size:26px;letter-spacing:-.3px}
   header p{margin:0 0 14px;opacity:.92;font-size:15px}
-  .go{display:inline-block;background:#fff;color:#8b6914;text-decoration:none;
-    padding:10px 20px;border-radius:10px;font-weight:700;font-size:15px}
-  .go:hover{opacity:.92}
+  header p{margin-bottom:0}
+
+  .cta{display:flex;align-items:center;gap:18px;text-decoration:none;
+    background:#1f1a12;color:#fff;border:3px solid #e8b82a;border-radius:16px;
+    padding:20px 24px;margin:0 0 24px;box-shadow:0 6px 22px rgba(184,134,11,.35);
+    transition:transform .15s,box-shadow .15s}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(184,134,11,.5)}
+  .cta-icon{flex-shrink:0;width:56px;height:56px;border-radius:14px;background:#e8b82a;color:#1f1a12;
+    display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900}
+  .cta-text{flex:1;min-width:0}
+  .cta-label{display:block;font-size:13px;font-weight:700;color:#e8b82a;letter-spacing:.3px}
+  .cta-main{display:block;font-size:22px;font-weight:800;line-height:1.35;margin:2px 0}
+  .cta-sub{display:block;font-size:13.5px;color:#cfc6b4}
+  .cta-arrow{flex-shrink:0;font-size:30px;color:#e8b82a;animation:nudge 1.2s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+  @media (prefers-reduced-motion:reduce){.cta-arrow{animation:none}}
 
   h2{font-size:20px;margin:44px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
   .step{display:flex;gap:12px;align-items:center;margin:32px 0 6px}
@@ -81,6 +94,10 @@
     header{flex-direction:column;text-align:center}
     header h1{font-size:22px}
     th{white-space:normal}
+    .cta{padding:16px;gap:12px}
+    .cta-icon{width:44px;height:44px;font-size:22px}
+    .cta-main{font-size:18px}
+    .cta-arrow{display:none}
   }
 </style>
 </head>
@@ -93,9 +110,18 @@
     <span class="badge">OFFICIAL GUIDE</span>
     <h1>후파의 야담플로우 사용법</h1>
     <p>튜브워커 엑셀 대본 + 인물시트로 야담 씬 이미지를 한 번에 일괄 생성</p>
-    <a class="go" href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd" target="_blank" rel="noopener">야담플로우 바로가기 →</a>
   </div>
 </header>
+
+<a class="cta" href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd" target="_blank" rel="noopener">
+  <span class="cta-icon">▶</span>
+  <span class="cta-text">
+    <span class="cta-label">👆 여기를 클릭하세요</span>
+    <span class="cta-main">클릭하면 후파의 야담플로우로 이동합니다</span>
+    <span class="cta-sub">새 탭에서 야담플로우가 열립니다</span>
+  </span>
+  <span class="cta-arrow">➜</span>
+</a>
 
 <div class="req">
   <h3>준비물</h3>
@@ -177,6 +203,16 @@
 <p>왼쪽 맨 아래의 <span class="btn">⚡ 일괄 생성 시작</span> 버튼을 누르면 모든 씬의 이미지가 차례대로 생성됩니다.</p>
 <figure class="narrow"><img src="images/12.png" alt="일괄 생성 시작" loading="lazy"></figure>
 <div class="note">💡 <strong>생성 설정</strong>(AI 모델, 이미지 비율, 동시 생성, 생성 지연)은 기본값(Nano Banana 2 · 16:9 · 2 · 1s) 그대로 사용해도 됩니다.</div>
+
+<a class="cta" style="margin-top:44px" href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd" target="_blank" rel="noopener">
+  <span class="cta-icon">▶</span>
+  <span class="cta-text">
+    <span class="cta-label">👆 준비됐다면 지금 시작하세요</span>
+    <span class="cta-main">클릭하면 후파의 야담플로우로 이동합니다</span>
+    <span class="cta-sub">새 탭에서 야담플로우가 열립니다</span>
+  </span>
+  <span class="cta-arrow">➜</span>
+</a>
 
 <footer>© 후파 · 후파의 야담플로우 공식 사용 설명서</footer>
 </div>
