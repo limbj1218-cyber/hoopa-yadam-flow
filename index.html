@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>후파의 야담플로우 사용법</title>
+<meta name="description" content="후파의 야담플로우 공식 사용 설명서 — 튜브워커 엑셀 대본과 인물시트로 야담 씬 이미지를 일괄 생성하는 방법">
+<link rel="icon" href="images/00_main.png">
+<style>
+  :root{
+    --bg:#faf9f6; --card:#fff; --ink:#1a1816; --muted:#7a746c;
+    --line:#e5dfd6; --brand:#b8860b; --brand-soft:#fdf6e3;
+    --warn-bg:#fff7ed; --warn-line:#fdba74; --warn-ink:#9a3412;
+    --ok:#15803d; --miss:#c2410c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121110; --card:#1d1b18; --ink:#ede9e0; --muted:#a09889;
+      --line:#302c26; --brand:#e8b82a; --brand-soft:#2a2518;
+      --warn-bg:#2b1d10; --warn-line:#a1560f; --warn-ink:#fcd9a8;
+      --ok:#4ade80; --miss:#fb923c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121110; --card:#1d1b18; --ink:#ede9e0; --muted:#a09889;
+    --line:#302c26; --brand:#e8b82a; --brand-soft:#2a2518;
+    --warn-bg:#2b1d10; --warn-line:#a1560f; --warn-ink:#fcd9a8;
+    --ok:#4ade80; --miss:#fb923c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;
+    line-height:1.75;-webkit-text-size-adjust:100%}
+  .wrap{max-width:820px;margin:0 auto;padding:32px 16px 80px}
+
+  header{background:linear-gradient(135deg,#c99a10,#8b6914);color:#fff;
+    border-radius:16px;padding:30px 28px;margin-bottom:24px;
+    display:flex;align-items:center;gap:24px}
+  header img{width:112px;height:112px;border-radius:20px;flex-shrink:0;object-fit:cover;
+    box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .badge{display:inline-block;background:rgba(255,255,255,.22);padding:2px 12px;border-radius:999px;
+    font-size:12.5px;font-weight:700;letter-spacing:.4px;margin-bottom:6px}
+  header h1{margin:0 0 4px;font-size:26px;letter-spacing:-.3px}
+  header p{margin:0 0 14px;opacity:.92;font-size:15px}
+  .go{display:inline-block;background:#fff;color:#8b6914;text-decoration:none;
+    padding:10px 20px;border-radius:10px;font-weight:700;font-size:15px}
+  .go:hover{opacity:.92}
+
+  h2{font-size:20px;margin:44px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
+  .step{display:flex;gap:12px;align-items:center;margin:32px 0 6px}
+  .num{flex-shrink:0;min-width:30px;height:30px;border-radius:999px;background:var(--brand);
+    color:#fff;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+  .step h3{margin:0;font-size:17px}
+  p,li,td,th{font-size:15px}
+  .step + p{margin-top:4px}
+
+  .toc,.req{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:0 0 20px}
+  .toc h3,.req h3{margin:0 0 8px;font-size:14px;color:var(--muted);letter-spacing:.6px}
+  .toc ol{margin:0;padding-left:20px}
+  .toc a{color:var(--brand);text-decoration:none;font-weight:600}
+  .toc a:hover{text-decoration:underline}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
+  th{white-space:nowrap}
+
+  .note{background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  .ok{color:var(--ok);font-weight:700}
+  .miss{color:var(--miss);font-weight:700}
+  .btn{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:6px;
+    padding:0 8px;font-weight:700;font-size:14px;white-space:nowrap}
+  code{background:var(--brand-soft);padding:2px 7px;border-radius:5px;font-size:13.5px;font-family:ui-monospace,Consolas,monospace}
+
+  figure{margin:14px 0 0;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:4px}
+  figure img{display:block;max-width:100%;height:auto;border-radius:10px;margin:0 auto}
+  figure.narrow img{max-width:360px;width:100%}
+  figcaption{font-size:13px;color:var(--muted);text-align:center;padding:6px 0 2px}
+  a{color:var(--brand)}
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center}
+  @media (max-width:600px){
+    header{flex-direction:column;text-align:center}
+    header h1{font-size:22px}
+    th{white-space:normal}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img src="images/00_main.png" alt="후파의 야담플로우">
+  <div>
+    <span class="badge">OFFICIAL GUIDE</span>
+    <h1>후파의 야담플로우 사용법</h1>
+    <p>튜브워커 엑셀 대본 + 인물시트로 야담 씬 이미지를 한 번에 일괄 생성</p>
+    <a class="go" href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd" target="_blank" rel="noopener">야담플로우 바로가기 →</a>
+  </div>
+</header>
+
+<div class="req">
+  <h3>준비물</h3>
+  <table>
+    <tr><th>엑셀 대본 (.xlsx)</th><td>튜브워커 → 스토리보드 단계 → <span class="btn">엑셀로 추출</span></td></tr>
+    <tr><th>인물시트 이미지</th><td>튜브워커 → 이미지 단계 → <span class="btn">인물시트 다운로드</span></td></tr>
+    <tr><th>Blueprint.json</th><td>클로드코드에서 대본 생성 후 나온 결과물 (튜브워커 음성 생성 때 업로드한 파일과 같은 파일)</td></tr>
+  </table>
+</div>
+
+<nav class="toc">
+  <h3>목차</h3>
+  <ol>
+    <li><a href="#part1">튜브워커에서 준비하기</a> (1~3단계)</li>
+    <li><a href="#part2">야담플로우에 대본 올리기</a> (4~6단계)</li>
+    <li><a href="#part3">인물시트 매칭하기</a> (7~11단계)</li>
+    <li><a href="#part4">일괄 생성</a> (12단계)</li>
+  </ol>
+</nav>
+
+<h2 id="part1">1. 튜브워커에서 준비하기</h2>
+
+<div class="step"><span class="num">1</span><h3>엑셀 대본 다운로드</h3></div>
+<p>튜브워커의 <strong>스토리보드 단계</strong>에서 화면 아래의 <span class="btn">엑셀로 추출</span> 버튼을 눌러 엑셀 대본을 다운로드합니다.</p>
+<figure><img src="images/01.png" alt="엑셀로 추출" loading="lazy"></figure>
+
+<div class="step"><span class="num">2</span><h3>인물시트 생성</h3></div>
+<p><strong>이미지 단계</strong>의 <strong>인물 시트</strong> 영역에서 <span class="btn">전체 재생성</span> 버튼을 눌러 인물시트를 생성합니다.</p>
+<div class="warn">⚠️ 인물시트 생성에는 <strong>크레딧이 사용</strong>됩니다.</div>
+<figure><img src="images/02.png" alt="인물시트 생성" loading="lazy"></figure>
+
+<div class="step"><span class="num">3</span><h3>인물시트 다운로드</h3></div>
+<p>화면 아래의 <span class="btn">인물시트 다운로드</span> 버튼을 눌러 인물시트를 받습니다. 파일은 <code>분이.png</code>, <code>달구.png</code>처럼 <strong>인물 이름</strong>으로 저장됩니다.</p>
+<figure><img src="images/03.png" alt="인물시트 다운로드" loading="lazy"></figure>
+
+<h2 id="part2">2. 야담플로우에 대본 올리기</h2>
+
+<div class="step"><span class="num">4</span><h3>엑셀 대본 업로드</h3></div>
+<p><a href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd" target="_blank" rel="noopener">후파의 야담플로우</a>에 접속합니다. 왼쪽 <strong>데이터 입력</strong>에서 <strong>①</strong> <span class="btn">엑셀 시나리오 업로드</span>를 눌러 1단계에서 받은 엑셀 대본을 올립니다.</p>
+<figure><img src="images/04.png" alt="엑셀 시나리오 업로드와 블루프린트 업로드 버튼" loading="lazy"></figure>
+
+<div class="step"><span class="num">5</span><h3>Blueprint.json 업로드</h3></div>
+<p>엑셀이 올라가면 씬 목록이 나타나고, 각 씬에 <span class="miss">주황색 "미매칭"</span> 표시가 붙어 있습니다.
+이어서 <strong>②</strong> <span class="btn">블루프린트 업로드</span>를 눌러 클로드코드에서 대본 생성 후 나온 <code>Blueprint.json</code>을 올립니다.</p>
+<div class="note">💡 튜브워커에서 <strong>음성 생성할 때 업로드했던 파일과 같은 파일</strong>입니다.</div>
+<figure><img src="images/05.png" alt="엑셀 업로드 직후 미매칭 상태" loading="lazy"><figcaption>엑셀 업로드 직후 — 아직 미매칭 상태</figcaption></figure>
+
+<div class="step"><span class="num">6</span><h3>매칭 성공 확인</h3></div>
+<p>Blueprint.json 처리가 끝나면 모든 씬이 <span class="ok">초록색 "매칭 성공"</span>으로 바뀌고, 각 씬에 등장인물(<code>CHARACTER</code>)이 채워집니다. 왼쪽 아래 <strong>캐릭터 라이브러리</strong>에도 인물 목록이 생깁니다.</p>
+<figure><img src="images/06.png" alt="매칭 성공" loading="lazy"></figure>
+
+<h2 id="part3">3. 인물시트 매칭하기</h2>
+
+<div class="step"><span class="num">7</span><h3>+ 버튼 누르기</h3></div>
+<p><strong>캐릭터 라이브러리</strong>에서 인물 이름 옆의 <span class="btn">+</span> 버튼을 눌러 해당 인물의 인물시트를 올립니다.</p>
+<figure><img src="images/07.png" alt="캐릭터 라이브러리 + 버튼" loading="lazy"></figure>
+
+<div class="step"><span class="num">8</span><h3>미디어 업로드 선택</h3></div>
+<p><span class="btn">+</span> 버튼을 누르면 나오는 팝업 메뉴에서 <strong>맨 아래의</strong> <span class="btn">미디어 업로드</span>를 누릅니다.</p>
+<figure class="narrow"><img src="images/08.png" alt="미디어 업로드" loading="lazy"></figure>
+
+<div class="step"><span class="num">9</span><h3>인물시트 일괄 업로드</h3></div>
+<p>3단계에서 받아 둔 인물시트를 <strong>한꺼번에 선택</strong>(<code>Ctrl + A</code>)해서 업로드합니다.</p>
+<figure><img src="images/09.png" alt="인물시트 일괄 선택" loading="lazy"></figure>
+
+<div class="step"><span class="num">10</span><h3>인물 선택</h3></div>
+<p>업로드된 목록에서 <strong>인물 이름과 같은 파일</strong>(예: 분이 → <code>분이.png</code>)을 선택합니다.
+나머지 인물도 <span class="btn">+</span> 버튼을 눌러 같은 방법으로 선택합니다. 한 번 올린 이미지는 목록에 남아 있으니 다시 업로드할 필요가 없습니다.</p>
+<figure><img src="images/10.png" alt="인물 선택" loading="lazy"></figure>
+
+<div class="step"><span class="num">11</span><h3>누락된 인물 수동 매칭</h3></div>
+<p>매칭이 끝나면 씬의 <code>CHARACTER</code> 옆에 인물 썸네일이 표시됩니다.
+썸네일이 빠진 씬이 있다면, <strong>씬에 마우스를 올렸을 때 나오는 👤+ 버튼</strong>을 눌러 인물을 직접 연결합니다.</p>
+<figure><img src="images/11.png" alt="수동 매칭" loading="lazy"></figure>
+
+<h2 id="part4">4. 일괄 생성</h2>
+
+<div class="step"><span class="num">12</span><h3>일괄 생성 시작</h3></div>
+<p>왼쪽 맨 아래의 <span class="btn">⚡ 일괄 생성 시작</span> 버튼을 누르면 모든 씬의 이미지가 차례대로 생성됩니다.</p>
+<figure class="narrow"><img src="images/12.png" alt="일괄 생성 시작" loading="lazy"></figure>
+<div class="note">💡 <strong>생성 설정</strong>(AI 모델, 이미지 비율, 동시 생성, 생성 지연)은 기본값(Nano Banana 2 · 16:9 · 2 · 1s) 그대로 사용해도 됩니다.</div>
+
+<footer>© 후파 · 후파의 야담플로우 공식 사용 설명서</footer>
+</div>
+</body>
+</html>
