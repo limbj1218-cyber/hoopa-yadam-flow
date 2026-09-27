@@ -89,6 +89,18 @@
   figure.narrow img{max-width:360px;width:100%}
   figcaption{font-size:13px;color:var(--muted);text-align:center;padding:6px 0 2px}
   a{color:var(--brand)}
+  .faq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:16px 0}
+  .faq-q{display:flex;gap:10px;align-items:flex-start;margin:0 0 10px;font-size:16.5px;line-height:1.5}
+  .faq-q .tag,.faq-a .tag{flex-shrink:0;min-width:34px;height:26px;border-radius:7px;font-size:13px;font-weight:800;
+    display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+  .faq-q .tag{background:var(--brand);color:#fff}
+  .faq-a{display:flex;gap:10px;align-items:flex-start}
+  .faq-a .tag{background:var(--brand-soft);color:var(--brand);border:1px solid var(--brand)}
+  .faq-a > div{flex:1;min-width:0}
+  .faq-a p{margin:0 0 8px}
+  .faq-a ul{margin:4px 0 8px;padding-left:20px}
+  .faq-a li{margin:4px 0}
+  .faq figure{margin-top:12px}
   footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center}
   @media (max-width:600px){
     header{flex-direction:column;text-align:center}
@@ -139,6 +151,7 @@
     <li><a href="#part2">야담플로우에 대본 올리기</a> (4~6단계)</li>
     <li><a href="#part3">인물시트 매칭하기</a> (7~11단계)</li>
     <li><a href="#part4">일괄 생성</a> (12단계)</li>
+    <li><a href="#faq">자주 묻는 질문</a></li>
   </ol>
 </nav>
 
@@ -203,6 +216,21 @@
 <p>왼쪽 맨 아래의 <span class="btn">⚡ 일괄 생성 시작</span> 버튼을 누르면 모든 씬의 이미지가 차례대로 생성됩니다.</p>
 <figure class="narrow"><img src="images/12.png" alt="일괄 생성 시작" loading="lazy"></figure>
 <div class="note">💡 <strong>생성 설정</strong>(AI 모델, 이미지 비율, 동시 생성, 생성 지연)은 기본값(Nano Banana 2 · 16:9 · 2 · 1s) 그대로 사용해도 됩니다.</div>
+
+<h2 id="faq">자주 묻는 질문</h2>
+
+<div class="faq">
+  <h3 class="faq-q"><span class="tag">Q1</span><span>블루프린트 파일을 업로드했는데 <span class="miss">미매칭</span>이 떠요. 어떻게 해야 하나요?</span></h3>
+  <div class="faq-a"><span class="tag">A1</span><div>
+    <p><span class="miss">미매칭</span>은 해당 씬의 <strong>이미지 생성용 프롬프트에 등장인물이 없을 때</strong> 표시됩니다. 씬 내용에 따라 아래처럼 처리하세요.</p>
+    <ul>
+      <li><strong>등장인물이 없는 씬이라면</strong> → 그대로 두셔도 괜찮습니다.</li>
+      <li><strong>캐릭터가 들어가야 하는 씬이라면</strong> → 씬 이미지에 마우스를 올리면 나타나는 두 아이콘 중 <strong>오른쪽 👤+ 버튼</strong>을 눌러 캐릭터를 직접 매칭해 주세요.</li>
+    </ul>
+    <div class="note">💡 수동으로 매칭한 뒤에도 <strong>왼쪽 위의 "미매칭" 표시는 사라지지 않습니다.</strong> 이 표시는 무시하셔도 됩니다.</div>
+  </div></div>
+  <figure><img src="images/미매칭.png" alt="미매칭 씬에 마우스를 올린 모습 — 오른쪽 👤+ 버튼으로 수동 매칭" loading="lazy"><figcaption>씬에 마우스를 올리면 나오는 아이콘 중 오른쪽 👤+ 버튼으로 수동 매칭</figcaption></figure>
+</div>
 
 <a class="cta" style="margin-top:44px" href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd" target="_blank" rel="noopener">
   <span class="cta-icon">▶</span>
