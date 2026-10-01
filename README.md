@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd">
+  <a href="https://flow.google.com/shared/tool/7a9597ff-1568-4bfb-ab82-d62bd3f67e37">
     <img src="https://img.shields.io/badge/▶%20클릭하면%20후파의%20야담플로우로%20이동합니다-E8B82A?style=for-the-badge&labelColor=1F1A12" height="56" alt="클릭하면 후파의 야담플로우로 이동합니다" />
   </a><br/>
   <sub>👆 위 버튼을 클릭하면 후파의 야담플로우가 열립니다</sub>
@@ -67,7 +67,7 @@
 
 ### 4단계 — 엑셀 대본 업로드
 
-[후파의 야담플로우](https://flow.google.com/shared/tool/9a27ddf0-04e6-439b-9ac9-d4b3d00e7dfd)에 접속합니다. 왼쪽 **데이터 입력**에서 **① `엑셀 시나리오 업로드`** 를 눌러 1단계에서 받은 엑셀 대본을 올립니다.
+[후파의 야담플로우](https://flow.google.com/shared/tool/7a9597ff-1568-4bfb-ab82-d62bd3f67e37)에 접속합니다. 왼쪽 **데이터 입력**에서 **① `엑셀 시나리오 업로드`** 를 눌러 1단계에서 받은 엑셀 대본을 올립니다.
 
 ![엑셀 시나리오 업로드 · 블루프린트 업로드](images/04.png)
 
